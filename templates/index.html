@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Full_friends</title>
+</head>
+<body>
+
+  <form action="/login" method="post">
+    Email <input type="text" name="email" value="">
+    Password <input type="password" name="password" value="">
+      <input type="submit" name="submit" value="Log In">
+  </form>
+
+
+  <hr>
+  <h3>New User? Register!</h3>
+  <form action="/register" method="post">
+    <input type="email" name="email" placeholder="Email" value="">
+    <input type="text" name="first_name" placeholder="First Name">
+    <input type="text" name="last_name" placeholder="Last Name">
+    <input type="password" name="password" placeholder="New Password">
+    <input type="password" name="confirm_password" placeholder="Confirm Password">
+    <input type="submit" name="submit" value="Register">
+  <hr>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <ul class=flashes>
+      {% for category, message in messages %}
+        <li class="{{ category }}">{{ message }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+  <!-- <form action='/', accept-charset="" method ="post">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          <p>{{message}}</p>
+      {% endif %}
+        <ul>
+          {% for user in users %}
+
+          <li>{{user.First_name}}  {{user.last_name}}  {{user.email}} {{user.created_at.strftime('%m/%d/%y')}} <input type="submit" formaction="/friends/{{user.id}}/edit" formmethod="get" value="EDIT"> <input type="submit" formaction="/friends/{{user.id}}/delete" value="DELETE"></li>
+        </ul>
+          {% endfor %}
+    {% endwith %}
+  </form>
+
+    <form action="/" method="post">
+
+      First Name:<input type="text" name="first_name" value="">
+      Last Name:<input type="text" name="last_name" value="">
+      Email:<input type="text" name="email" value="">
+
+      <input type="submit" value="ADD FRIEND">
+    </form> -->
+
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NewsFeed</title>
+</head>
+
+<body>
+  <form action="/message" method="post">
+  Post a message
+  {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          <p>{{message}}</p>
+      {% endif %}
+      <ul>
+
+        <li>Welcome {{info[0].first_name}} </li>
+        <li><textarea name="message" rows="5" cols="100" value placeholder="Type a message"></textarea></li>
+        <input type="submit"  name="submit" value="Post a message">
+      </ul>
+
+
+        <ul>
+          {% for msg in msgs %}
+                  <li>{{msg.first_name}} {{msg.last_name}} {{msg.created_at}} </li>
+                  <p>
+                    {{msg.message}}
+                  </p>
+                        {% for com in coms %}
+                          {% if com.message_id == msg.id %}
+                            <ul>
+                              <li>{{com.first_name}} {{com.last_name}} {{com.created_at}}</li>
+                              <p>
+                                {{com.comment}}
+                              </p>
+                            </ul>
+                          {% endif %}
+                       {% endfor %}
+
+
+                    <ul>
+                        <li><textarea name="comment" rows="5" cols="100" value placeholder="Type a comment"></textarea></li>
+                        <input type="submit" formaction= "/comment/{{msg.id}}" name="submit" value="Post a comment">
+                    </ul>
+        </ul>
+          {% endfor %}
+    {% endwith %}
+  </form>
+
+</body>
+</html>
